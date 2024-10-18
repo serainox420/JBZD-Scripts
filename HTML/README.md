@@ -1,0 +1,1 @@
+# Obieraczka do requestów
