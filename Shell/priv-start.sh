@@ -1,8 +1,10 @@
 #!/bin/bash
 
-# Rozpocznij nowa rozmowe prywatna
+# Rozpocznij nowa rozmowe prywatną
+# Podajesz: <Config> oraz <UID> + <NICK>, a otrzymujesz <HASH>
 # $0 <config> <UID> <NICK>
-# Wypluwa Hash: <XYZ> który jest potrzebny do wysłania wiadomości.
+# Wypluwa Hash: <XYZ> który jest potrzebny do faktycznego wysłania wiadomości.
+# Hash rozmowy można wygenerować w ten sposób, lub ręcznie na stronie, wchodząc z kimś w rozmowe, hash znajdziesz na końcu URL
 
 # Check if the correct number of arguments are passed
 if [ "$#" -ne 3 ]; then
