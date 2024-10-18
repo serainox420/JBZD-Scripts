@@ -1,4 +1,5 @@
 # Przykładowy config
+
 > Templatka:
 ```
 COOKIE=X
