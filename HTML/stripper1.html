@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Stripper</title>
+    <script>
+        // Configuration: Define the values to strip (keys)
+        const config = ["cookie", "x-csrf-token", "x-xsrf-token"];
+
+        // Function to strip data based on the configuration and generate a .txt file
+        function stripData() {
+            // Get the text input from the user
+            const inputText = document.getElementById("inputField").value;
+
+            // Get the filename from the user
+            const fileName = document.getElementById("filename").value || 'stripped_data'; // Default filename if empty
+
+            // Initialize an empty object to store the stripped values
+            let strippedData = {};
+
+            // Loop through each key in the config and search for the pattern in the text
+            config.forEach(key => {
+                const regex = new RegExp(`${key}:\\s*([^\\s]+)`, 'i'); // Regex to find "key: value"
+                const match = inputText.match(regex);
+                if (match) {
+                    let extractedValue = match[1].trim();
+                    // Remove trailing ' symbol if present
+                    if (extractedValue.endsWith("'")) {
+                        extractedValue = extractedValue.slice(0, -1);
+                    }
+                    strippedData[key.toUpperCase()] = extractedValue; // Save with uppercase key
+                }
+            });
+
+            // If no data was found, alert the user and stop
+            if (Object.keys(strippedData).length === 0) {
+                alert("No matching values found.");
+                return;
+            }
+
+            // Prepare the content for the .txt file
+            let content = "";
+            for (const [key, value] of Object.entries(strippedData)) {
+                content += `${key}=${value}\n`;
+            }
+
+            // Create a Blob with the content and trigger the download
+            const blob = new Blob([content], { type: "text/plain" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName + ".txt"; // Use the filename input or default to 'stripped_data.txt'
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Obieraczka do requestów</h1>
+	<p1>Instrukcja obsługi:</p1>
+    
+    <p>Wejdź na dzidke zalogowany, Otwórz narzędzia deweloperskie klikając F12, Wejdź do zakładki "Network", po czym kliknij ikonke dzwoneczka od powiadomień, powinien pokazać się nowy request o nazwie "listing?page...", kliknij na niego prawym przyciskiem -> Copy -> Copy as cURL</p>
+    
+    <p>Wklej surowy request cURL by wyekstraktować z niego ciastka i tokeny</p>
+
+    <textarea id="inputField" rows="10" cols="50" placeholder="Wklej surowy cURL request tutaj..."></textarea>
+    <br><br>
+
+    <label for="filename">Jak nazwać nowy plik? </label>
+    <input type="text" id="filename" placeholder="Nazwa pliku?">
+    <br><br>
+
+    <button onclick="stripData()">Obieraj</button>
+
+</body>
+</html>
