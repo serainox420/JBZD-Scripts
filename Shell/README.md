@@ -1,8 +1,10 @@
 # Shell scripts (cURL)
 > Zestaw skryptów na bazie cURL
 
-### Skrypty:
-- `create-image.sh` - Wrzuć mema z obrazkiem 
+## Skrypty:
+- `create-image.sh` - Wrzuć mema z obrazkiem
+- `priv-start.sh` - Rozpocznij nową rozmowę prywatną
+- `priv-send.sh` - Wyślij wiadomość w rozmowie prywatnej 
 
 
 ### Extra pierdoły:
