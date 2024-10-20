@@ -2,6 +2,7 @@
 > Zestaw skryptów na bazie cURL
 
 ## Skrypty:
+- `confirm-phone.sh` - Potwierdź numer telefonu
 - `create-image.sh` - Wrzuć mema z obrazkiem
 - `priv-start.sh` - Rozpocznij nową rozmowę prywatną
 - `priv-send.sh` - Wyślij wiadomość w rozmowie prywatnej 
