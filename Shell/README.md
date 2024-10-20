@@ -2,6 +2,7 @@
 > Zestaw skryptów na bazie cURL
 
 ## Skrypty:
+- `register.sh` - Zarejestruj nowe konto
 - `confirm-phone.sh` - Potwierdź numer telefonu
 - `create-image.sh` - Wrzuć mema z obrazkiem
 - `priv-start.sh` - Rozpocznij nową rozmowę prywatną
